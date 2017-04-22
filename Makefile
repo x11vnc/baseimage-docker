@@ -1,4 +1,4 @@
-NAME = phusion/baseimage
+NAME = x11vnc/baseimage
 VERSION = 0.9.22
 
 .PHONY: all build test tag_latest release ssh
