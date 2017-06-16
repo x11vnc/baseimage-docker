@@ -5,11 +5,12 @@ language: python
 services: docker
 
 before_install:
-  # Install latest version of docker-ce
-  # https://docs.docker.com/engine/installation/linux/ubuntu/#install-using-the-repository
+  # Install latest version of docker-ce and enable experimental features
   - sudo apt-get remove docker-engine
-  - curl -O https://download.docker.com/linux/ubuntu/dists/trusty/pool/edge/amd64/docker-ce_17.05.0~ce-0~ubuntu-trusty_amd64.deb
-  - echo "Y\n" | sudo dpkg -i docker-ce_17.05.0~ce-0~ubuntu-trusty_amd64.deb
+  - curl -O https://apt.dockerproject.org/repo/pool/main/d/docker-engine/docker-engine_17.05.0~ce-0~ubuntu-trusty_amd64.deb
+  - echo "Y\n" | sudo dpkg -i docker-engine_17.05.0~ce-0~ubuntu-trusty_amd64.deb
+  - echo "{"experimental":true}" | sudo tee /etc/docker/daemon.json
+  - sudo sudo systemctl restart docker
 
 script:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
