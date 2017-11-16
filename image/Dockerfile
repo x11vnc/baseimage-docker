@@ -1,5 +1,5 @@
-FROM ubuntu:16.04
-MAINTAINER Phusion <info@phusion.nl>
+FROM ubuntu:17.10
+MAINTAINER Xiangmin Jiao <xmjiao@gmail.com>
 
 COPY . /bd_build
 

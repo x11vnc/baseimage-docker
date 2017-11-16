@@ -1,5 +1,5 @@
 NAME = x11vnc/baseimage
-VERSION = 0.9.22
+VERSION = 17.10
 
 .PHONY: all build test tag_latest release ssh
 
@@ -16,7 +16,7 @@ tag_latest:
 
 release: test tag_latest
 	@if ! docker images $(NAME) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make build'"; false; fi
-	docker push $(NAME)
+	docker push $(NAME):$(VERSION)
 	@echo "*** Don't forget to create a tag by creating an official GitHub release."
 
 ssh:
