@@ -1,9 +1,14 @@
 os: linux
-dist: trusty
-sudo: required
 language: python
 services: docker
 
+# Make sure CHILDREN_<branchname> is defined in Travis setting
+env: CHILDREN=CHILDREN_${TRAVIS_BRANCH/[\.\-]/_}
+
+before_script:
+  - git clone --depth=1 https://$GIT_TOKEN@github.com/xmjiao/ci-util.git
+
 script:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
-  - make build && make release
+  - make build && make release &&
+    ./ci-util/trigger-via-api.sh ${!CHILDREN}'
