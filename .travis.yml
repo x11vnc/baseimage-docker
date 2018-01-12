@@ -11,4 +11,4 @@ before_script:
 script:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
   - make build && make release &&
-    ./ci-util/trigger-via-api.sh ${!CHILDREN}'
+    ./ci-util/trigger-via-api.sh ${!CHILDREN}
