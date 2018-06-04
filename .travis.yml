@@ -5,6 +5,12 @@ services: docker
 before_script:
   - git clone --depth=1 https://$GIT_TOKEN@github.com/xmjiao/ci-util.git
 
+env:
+  global:
+    - NAME=phusion/baseimage
+    # - VERSION=${TRAVIS_TAG}
+    - VERSION=${TRAVIS_BRANCH}
+
 script:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
   - 'make build && ([[ "$TRAVIS_EVENT_TYPE" == "cron" ]] || 
