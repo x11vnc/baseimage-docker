@@ -1,5 +1,5 @@
 NAME = x11vnc/baseimage
-VERSION = 17.10
+VERSION = 18.04
 
 .PHONY: all build test tag_latest release ssh
 
